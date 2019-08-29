@@ -31,9 +31,9 @@ function typescript() {
 // Initializae Browser Sync
 function browserSyncInit(done) {
   browserSync.init({
-    server: {
-      baseDir: './'
-    }
+    proxy: 'localhost/joshmakarcom',
+    open: false,
+    ghostMode: false
   }, done);
 }
 

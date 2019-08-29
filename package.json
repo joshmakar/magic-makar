@@ -1,0 +1,25 @@
+{
+  "name": "magic-makar",
+  "version": "1.0.0",
+  "description": "A theme for joshmakar.com based off of _'s",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshmakar/magic-makar.git"
+  },
+  "keywords": [
+    "wordpress",
+    "themes",
+    "underscores",
+    "_'s"
+  ],
+  "author": "Josh Makar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshmakar/magic-makar/issues"
+  },
+  "homepage": "https://github.com/joshmakar/magic-makar#readme"
+}

@@ -45,15 +45,12 @@
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
-			<h1 class="screen-reader-text">Main Navigation</h1>
-			<div class="navicon closed"><i class="fa fa-navicon"></i></div>
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'magic-makar' ); ?></button>
 			<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'primary',
-						'depth' => 2
-					)
-				);
+			wp_nav_menu( array(
+				'theme_location' => 'menu-1',
+				'menu_id'        => 'primary-menu',
+			) );
 			?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->

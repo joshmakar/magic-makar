@@ -4,6 +4,7 @@
 
 const gulp        = require('gulp'),
       sass        = require('gulp-sass'),
+      sourcemaps  = require('gulp-sourcemaps'),
       ts          = require('gulp-typescript'),
       browserSync = require('browser-sync').create();
 const tsProject = ts.createProject('tsconfig.json');
@@ -16,7 +17,9 @@ const tsProject = ts.createProject('tsconfig.json');
 // Compile SCSS
 function scss() {
   return gulp.src('./sass/**/*.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./'))
     .pipe(browserSync.stream());
 }
@@ -28,7 +31,7 @@ function typescript() {
     .js.pipe(gulp.dest('./js'));
 }
 
-// Initializae Browser Sync
+// Initialize Browser Sync
 function browserSyncInit(done) {
   browserSync.init({
     proxy: 'localhost/joshmakarcom',

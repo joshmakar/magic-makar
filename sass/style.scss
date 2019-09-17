@@ -47,14 +47,14 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "mixins/mixins-master";
 
 /*--------------------------------------------------------------
-# Normalize
---------------------------------------------------------------*/
-@import "normalize";
-
-/*--------------------------------------------------------------
 # Custom Vars & Mixins
 --------------------------------------------------------------*/
 @import "mm_custom/custom_vars_mixins";
+
+/*--------------------------------------------------------------
+# Normalize
+--------------------------------------------------------------*/
+@import "normalize";
 
 /*--------------------------------------------------------------
 # Typography
@@ -89,7 +89,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # Clearings
 --------------------------------------------------------------*/
-@import "modules/clearings";
+@import "mm_custom/modules/clearings";
 
 /*--------------------------------------------------------------
 # Widgets

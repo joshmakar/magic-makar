@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
 
   var menu_ul = $('.main-navigation').find('ul').first();
 
-  menu_ul.children('.menu-item-has-children').children('a').append('<span class="mytheme_menu_switch">+</span>');
+  menu_ul.children('.menu-item-has-children').children('a').append('<span class="mytheme_menu_switch">▼</span>');
 
   // Touch friendly expanded nav
   // $(menu_ul + ' li span').click(function(event){

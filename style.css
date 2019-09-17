@@ -43,6 +43,21 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	## Galleries
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
+# Custom Vars & Mixins
+--------------------------------------------------------------*/
+/*////////////////////////////////////
+Structure
+////////////////////////////////////*/
+/*////////////////////////////////////
+Colors
+////////////////////////////////////*/
+/*////////////////////////////////////
+Typography
+////////////////////////////////////*/
+/*////////////////////////////////////
+Media Queries
+////////////////////////////////////*/
+/*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
@@ -345,9 +360,6 @@ template {
   display: none; }
 
 /*--------------------------------------------------------------
-# Custom Vars & Mixins
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
 body,
@@ -356,11 +368,11 @@ input,
 select,
 optgroup,
 textarea {
-  color: #505050;
-  font-family: Raleway, "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+  color: #404040;
+  font-family: "Bitter", serif;
   font-size: 16px;
   font-size: 1rem;
-  line-height: 1.618em; }
+  line-height: 1.5; }
 
 h1, h2, h3, h4, h5, h6 {
   clear: both; }
@@ -382,7 +394,7 @@ pre {
   font-family: "Courier 10 Pitch", Courier, monospace;
   font-size: 15px;
   font-size: 0.9375rem;
-  line-height: 1.618em;
+  line-height: 1.6;
   margin-bottom: 1.6em;
   max-width: 100%;
   overflow: auto;
@@ -417,7 +429,7 @@ html {
   box-sizing: inherit; }
 
 body {
-  background: #ebe8e5;
+  background: #F1EFF3;
   /* Fallback for when there is no custom background color defined. */ }
 
 hr {
@@ -541,11 +553,11 @@ textarea {
 ## Links
 --------------------------------------------------------------*/
 a {
-  color: #7b6e62; }
+  color: royalblue; }
   a:visited {
-    color: #7b6e62; }
+    color: purple; }
   a:hover, a:focus, a:active {
-    color: #7b6e62; }
+    color: midnightblue; }
   a:focus {
     outline: thin dotted; }
   a:hover, a:active {
@@ -554,112 +566,68 @@ a {
 /*--------------------------------------------------------------
 ## Menus
 --------------------------------------------------------------*/
-.main-navigation h1 {
-  display: none !important; }
-
 .main-navigation ul {
-  margin: 0;
-  padding: 0;
+  display: none;
   list-style: none;
-  position: relative;
-  white-space: nowrap; }
-  .main-navigation ul li {
-    cursor: pointer;
-    list-style: none;
-    display: block;
-    position: relative;
-    padding: 0;
-    /* switch symbol for showing child */
-    /* nav child menu */
-    /* show child */ }
-    .main-navigation ul li a {
-      display: inline-block; }
-    .main-navigation ul li span {
-      display: inline-block;
-      text-align: right;
-      width: 1.4em;
-      padding-right: 0.5em;
-      margin-left: 0.5em;
-      margin-right: -0.5em; }
-    .main-navigation ul li ul {
-      display: none;
-      padding: 0;
-      margin: 0; }
-    .main-navigation ul li ul.childopen {
-      display: block; }
+  margin: 0;
+  padding-left: 0; }
+  .main-navigation ul ul {
+    background-color: #151414;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 1.618em;
+    position: absolute;
+    left: -999em;
+    z-index: 99999; }
+    .main-navigation ul ul ul {
+      left: -999em;
+      top: 0; }
+    .main-navigation ul ul li:hover > ul,
+    .main-navigation ul ul li.focus > ul {
+      left: 100%; }
+  .main-navigation ul li:hover > ul,
+  .main-navigation ul li.focus > ul {
+    left: auto; }
 
-/* expanded nav menu */
-@media (min-width: 72.4339rem) {
-  .navicon {
+.main-navigation li {
+  margin: 0 1.618em 0 0;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 1em;
+  transform: skew(0deg, 10deg);
+  overflow: hidden;
+  margin-top: -12px; }
+  .main-navigation li a {
+    transform: skew(0deg, -10deg); }
+  .main-navigation li:hover {
+    background: #E91E63; }
+    .main-navigation li:hover a {
+      color: #F1EFF3; }
+  .main-navigation li:last-child {
+    margin-right: 0; }
+
+.main-navigation a {
+  color: #EE3057;
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none; }
+
+/* Small menu. */
+.menu-toggle,
+.main-navigation.toggled ul {
+  display: block; }
+
+@media (min-width: 768px) {
+  .menu-toggle {
     display: none; }
-  .navmenu {
-    display: block; }
   .main-navigation ul {
-    float: right;
-    display: inline-table; }
-    .main-navigation ul li {
-      float: left;
-      /* expanded nav child menu */ }
-      .main-navigation ul li a {
-        padding: 1.618rem; }
-      .main-navigation ul li ul {
-        position: absolute;
-        z-index: 9999;
-        top: 100%;
-        left: 0;
-        background-color: #eae5e1;
-        border: 0.0625rem solid #e8e0da;
-        border-bottom: 0;
-        box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); }
-        .main-navigation ul li ul li {
-          float: none; }
-          .main-navigation ul li ul li a {
-            width: 100%;
-            line-height: 4.5rem;
-            padding: 0 2.1875rem; }
-          .main-navigation ul li ul li a, .main-navigation ul li ul li a:link, .main-navigation ul li ul li a:visited {
-            border: 0;
-            border-top: 0.0625rem solid #e4dbd4; }
-          .main-navigation ul li ul li a:hover {
-            background-color: #ece9e5; } }
+    display: flex; } }
 
-/* collapsed nav menu */
-@media (max-width: 72.4339rem) {
-  .navicon {
-    float: right;
-    font-size: 1.65rem;
-    line-height: 2.8125rem;
-    text-align: center;
-    width: 3.375rem;
-    margin: 0.9375rem;
-    cursor: pointer; }
-  .main-navigation ul {
-    clear: left;
-    display: none;
-    /* collapsed nav child menu */ }
-    .main-navigation ul.show {
-      display: block; }
-    .main-navigation ul li a {
-      width: 100%;
-      line-height: 4.5rem;
-      padding: 0 2.1875rem;
-      border-top: 0.0625rem solid #e8e0da; }
-      .main-navigation ul li a:hover {
-        border-bottom-color: transparent;
-        background-color: #eae5e1; }
-    .main-navigation ul ul {
-      position: relative;
-      left: 0;
-      background-color: #e9e3dd; }
-      .main-navigation ul ul li a {
-        border-top: 0.0625rem solid #e4dbd4; }
-        .main-navigation ul ul li a:hover {
-          border-bottom-color: transparent;
-          background-color: #e7e0da; } }
-
-.site-main .comment-navigation,
-.site-main .posts-navigation,
-.site-main .post-navigation {
+.site-main .comment-navigation, .site-main
+.posts-navigation, .site-main
+.post-navigation {
   margin: 0 0 1.5em;
   overflow: hidden; }
 
@@ -739,30 +707,6 @@ a {
 /*--------------------------------------------------------------
 # Clearings
 --------------------------------------------------------------*/
-.clear:before,
-.clear:after,
-.entry-content:before,
-.entry-content:after,
-.comment-content:before,
-.comment-content:after,
-.site-header:before,
-.site-header:after,
-.site-content:before,
-.site-content:after,
-.site-footer:before,
-.site-footer:after {
-  content: "";
-  display: table;
-  table-layout: fixed; }
-
-.clear:after,
-.entry-content:after,
-.comment-content:after,
-.site-header:after,
-.site-content:after,
-.site-footer:after {
-  clear: both; }
-
 /*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
@@ -890,22 +834,24 @@ object {
 /*--------------------------------------------------------------
 # Custom Styles
 --------------------------------------------------------------*/
-* {
-  box-sizing: border-box;
-  word-wrap: break-word; }
+/*///////////////////////////////////////////////
+General Resets
+///////////////////////////////////////////////*/
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
 
 a {
   text-decoration: none; }
-
-blockquote {
-  font-style: 1.25rem; }
 
 ul, ol {
   padding: 0;
   margin: 0 0 1.618em 1.618em; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Raleway, "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+  font-family: "Montserrat", sans-serif;
   line-height: 1.313em;
   font-weight: 300; }
 
@@ -936,248 +882,74 @@ h6 {
 .widget-title {
   font-size: 1.313em; }
 
-.content-area {
-  float: left;
-  margin: 0 -30% 0 0;
-  width: 100%; }
-
-.site-main {
-  margin: 0 30% 0 0; }
-
-.site-content .widget-area {
-  float: right;
-  overflow: hidden;
-  width: 30%; }
-
-.site-footer {
-  clear: both;
-  width: 100%; }
-
-.no-sidebar .content-area {
-  float: none;
-  margin-left: auto;
-  margin-right: auto; }
-
-.no-sidebar .site-main {
-  margin-right: 0; }
-
-.site {
-  padding-top: 0.809rem; }
+/*///////////////////////////////////////////////
+Global Styles
+///////////////////////////////////////////////*/
+body {
+  background-image: url("media/images/scratched-texture-background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw 75vh; }
 
 .site-header {
-  max-width: 72.4339rem;
-  margin: 0.809rem auto 1.618rem auto; }
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.618em 1.618em; }
 
 .site-branding {
-  padding-left: 1.618rem;
-  padding-top: 1.618rem;
-  padding-bottom: 1.618rem;
-  float: left; }
+  height: 30px; }
+  .site-branding a, .site-branding svg {
+    height: 100%;
+    transition: transform 200ms ease-in-out; }
+    .site-branding a .default_fill, .site-branding svg .default_fill {
+      fill: #EE3057; }
+    .site-branding a:hover, .site-branding svg:hover {
+      transform: rotate(360deg); }
 
-.site-title {
-  font-weight: 700; }
-
-.site-title, .site-description {
-  margin: 0;
-  line-height: 1em;
-  display: inline-block;
-  vertical-align: bottom; }
-
-.site-description {
-  margin-left: 0.5em;
-  font-style: italic; }
+.site-info {
+  font-family: "Montserrat", sans-serif;
+  text-align: center; }
+  .site-info, .site-info a {
+    color: #F1EFF3; }
+  .site-info .site-title, .site-info .site-description {
+    margin: 0; }
+  .site-info .site-title {
+    font-size: 1.5em; }
+  .site-info .site-description {
+    font-weight: bold; }
 
 .site-content {
-  max-width: 72.4339rem;
-  margin: 1.618rem auto 0 auto; }
+  box-shadow: 0 0 6px #000;
+  margin: 0 auto;
+  max-width: 900px; }
 
-.hentry, .comments-area, .page-header, .site-main .posts-navigation, .site-main .post-navigation, .paging-navigation {
-  padding-left: 4.2358rem;
-  padding-right: 4.2358rem;
-  padding-top: 2.61792rem;
-  padding-bottom: 2.61792rem;
-  margin: 0 0 1.618rem 0; }
+.content-area {
+  background: #F1EFF3;
+  padding: 3.236em; }
 
-.page-header .page-title {
-  text-align: center; }
+/*///////////////////////////////////////////////
+Page Specific Styles
+///////////////////////////////////////////////*/
+.greeter_outer-wrapper {
+  background-blend-mode: normal, hard-light, normal;
+  background-image: url("media/images/joshmakar-glasses.png"), url("media/images/diagonal-bar.png"), url("media/images/scratched-texture-background.jpg");
+  background-position: bottom right 3.236em, center, center;
+  background-repeat: no-repeat;
+  background-size: contain, cover, cover;
+  height: 422px; }
 
-.entry-content a img {
-  vertical-align: bottom; }
+.greeter_inner-wrapper {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  padding: 3.236em; }
 
-.entry-header {
-  text-align: center; }
-
-.entry-title {
-  margin-top: 0;
-  margin-bottom: 2.61792rem; }
-
-.entry-meta {
-  display: inline-block;
-  font-size: 1.125rem;
-  font-weight: 300;
-  padding: 0.8em 1.2em;
-  margin-bottom: 1.618rem; }
-
-.entry-footer {
-  text-align: center;
-  margin: 2.61792rem 0 1.618rem 0;
-  line-height: 3em; }
-  .entry-footer span {
-    margin: 0 0.618em;
-    padding: 0 0.618em;
-    display: inline-block; }
-
-.comment-list {
-  list-style: none;
-  margin: 0;
-  padding: 0; }
-  .comment-list .comment {
-    padding: 1.618rem; }
-
-.widget {
-  padding-left: 2.61792rem;
-  padding-right: 2.61792rem;
-  padding-top: 2.61792rem;
-  padding-bottom: 2.61792rem;
-  margin-left: 1.618rem;
-  margin-bottom: 1.618rem; }
-
-.widget ul {
-  list-style: none;
-  margin: 0;
-  padding: 0; }
-  .widget ul li {
-    padding: 1em 0 1em 2em; }
-    .widget ul li.page_item_has_children, .widget ul li.menu-item-has-children {
-      padding-bottom: 0;
-      border: none; }
-    .widget ul li li li li {
-      padding-left: 0; }
-  .widget ul .children li:first-of-type, .widget ul .sub-menu li:first-of-type {
-    margin-top: 1em; }
-
-input.search-field {
-  box-sizing: border-box;
-  width: 100%; }
-
-.site-footer {
-  padding-top: 1.618em;
-  padding-bottom: 1.618em;
-  max-width: 72.4339rem;
-  margin: 0 auto; }
-
-@media (max-width: 72.4339rem) {
-  h1, h2, h3, h4, h5, h6 {
-    font-family: Raleway, "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
-    line-height: 1.313em;
-    font-weight: 300; }
-  h1 {
-    font-size: 2.7em;
-    margin: 0.563em 0; }
-  h2 {
-    font-size: 2.025em;
-    margin: 0.625em 0; }
-  h3 {
-    font-size: 1.35em;
-    margin: 1.313em 0; }
-  h4 {
-    font-size: 1.1817em;
-    margin: 1.313em 0; }
-  h5 {
-    font-size: 1.0125em;
-    margin: 1.313em 0; }
-  h6 {
-    font-size: 1em;
-    margin: 0.75em 0; }
-  .widget-title {
-    font-size: 1.1817em; }
-  .hentry, .comments-area, .page-header, .site-main .posts-navigation, .site-main .post-navigation, .paging-navigation {
-    padding-left: 2.61792rem;
-    padding-right: 2.61792rem;
-    padding-top: 1.618rem;
-    padding-bottom: 1.618rem; }
-  .entry-title {
-    margin-bottom: 1.618rem; }
-  .site-footer {
-    padding: 1.618em; } }
-
-@media (max-width: 56.25rem) {
-  .content-area {
-    float: none;
-    margin: 0;
-    width: 100%; }
-  .site-main {
-    margin: 0; }
-  .site-content .widget-area {
-    float: none;
-    overflow: hidden;
-    width: 100%; }
-  .widget {
-    margin-left: 0;
-    margin-bottom: 1.618rem; } }
-
-@media (max-width: 37.5rem) {
-  h1, h2, h3, h4, h5, h6 {
-    font-family: Raleway, "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
-    line-height: 1.313em;
-    font-weight: 300; }
-  h1 {
-    font-size: 2.4em;
-    margin: 0.563em 0; }
-  h2 {
-    font-size: 1.8em;
-    margin: 0.625em 0; }
-  h3 {
-    font-size: 1.2em;
-    margin: 1.313em 0; }
-  h4 {
-    font-size: 1.0504em;
-    margin: 1.313em 0; }
-  h5 {
-    font-size: 1em;
-    margin: 1.313em 0; }
-  h6 {
-    font-size: 1em;
-    margin: 0.75em 0; }
-  .widget-title {
-    font-size: 1.0504em; } }
-
-@media (max-width: 25rem) {
-  h1, h2, h3, h4, h5, h6 {
-    font-family: Raleway, "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
-    line-height: 1.313em;
-    font-weight: 300; }
-  h1 {
-    font-size: 2.1em;
-    margin: 0.563em 0; }
-  h2 {
-    font-size: 1.575em;
-    margin: 0.625em 0; }
-  h3 {
-    font-size: 1.05em;
-    margin: 1.313em 0; }
-  h4 {
-    font-size: 1em;
-    margin: 1.313em 0; }
-  h5 {
-    font-size: 1em;
-    margin: 1.313em 0; }
-  h6 {
-    font-size: 1em;
-    margin: 0.75em 0; }
-  .widget-title {
-    font-size: 1em; }
-  .hentry, .comments-area, .page-header, .site-main .posts-navigation, .site-main .post-navigation, .paging-navigation {
-    padding-left: 1.618rem;
-    padding-right: 1.618rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem; }
-  .entry-title {
-    margin-bottom: 1rem; }
-  .widget {
-    padding-left: 1.618rem;
-    padding-right: 1.618rem;
-    padding-top: 1.618rem;
-    padding-bottom: 1.618rem; } }
+.greeter_text {
+  color: #F1EFF3;
+  font-family: "Montserrat", sans-serif;
+  font-size: 3em;
+  font-weight: 700; }
+  .greeter_text span {
+    display: block; }
 
 /*# sourceMappingURL=style.css.map */

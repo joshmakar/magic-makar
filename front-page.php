@@ -17,12 +17,14 @@ get_header();
 
   <div class="greeter_outer-wrapper">
     <div class="greeter_inner-wrapper">
+			<div class="greeter_image">
+				<img src="<?php echo get_template_directory_uri() . '/media/images/joshmakar-glasses-mobile.png'; ?>" alt="That's me">
+			</div>
       <div class="greeter_text">
         <span>I'm a Designer</span>
         <span>I'm a Coder</span>
         <span>I'm a Developer</span>
       </div>
-      <div class="greeter_image"></div>
     </div>
   </div>
 	<div id="primary" class="content-area">

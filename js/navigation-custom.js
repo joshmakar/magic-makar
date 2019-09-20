@@ -56,13 +56,11 @@ jQuery(document).ready(function($){
 
       menu_ul.addClass('show');
       menu_ul.removeClass('closed').addClass('open');
-      menu_ul.children('.fa').removeClass('fa-navicon').addClass('fa-close');
 
     } else {
 
       menu_ul.removeClass('show');
       menu_ul.removeClass('open').addClass('closed');
-      menu_ul.children('.fa').removeClass('fa-close').addClass('fa-navicon');
 
     }
 

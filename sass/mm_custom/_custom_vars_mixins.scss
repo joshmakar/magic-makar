@@ -5,7 +5,7 @@ Structure
 $phi: 1.618;
 $base_font_size: 16;
 $px: ( 1 / $base_font_size ) * 1rem;
-$max-width: 900;
+$max-width: 980;
 
 
 /*////////////////////////////////////
@@ -13,13 +13,36 @@ Colors
 ////////////////////////////////////*/
 
 $theme__colors: (
-  "primary": #EE3057,
+  // "primary": #EC0B43, // Hot Rink
+  // "primary": #FF1654, // Awesome Pink
+  // "primary": #70C1B3, // Deep Sea Foam
+  "primary": #00B2CA, // Blue
   "secondary": #31393C,
   "light": #F1EFF3,
   "dark": #151414
 );
 
-$color__background-body: map-get($theme__colors, "light");
+// Overwrites from variable-site/_colors.scss
+$color__background-body: darken(map-get($theme__colors, "primary"), 5%);
+$color__background-screen: #f1f1f1;
+$color__background-hr: #ccc;
+$color__background-button: #e6e6e6;
+$color__background-pre: #eee;
+$color__background-ins: #fff9c0;
+
+$color__text-screen: #21759b;
+$color__text-input: #666;
+$color__text-input-focus: #111;
+$color__link: map-get($theme__colors, 'primary');
+$color__link-visited: darken(map-get($theme__colors, "primary"), 5%);
+$color__link-hover: darken(map-get($theme__colors, "primary"), 10%);
+$color__text-main: #404040;
+
+$color__border-button: #ccc #ccc #bbb;
+$color__border-button-hover: #ccc #bbb #aaa;
+$color__border-button-focus: #aaa #bbb #bbb;
+$color__border-input: #ccc;
+$color__border-abbr: #666;
 
 
 /*////////////////////////////////////
@@ -51,6 +74,9 @@ $htag_vmargins: 0.563, 0.625, 1.313, 1.313, 1.313, 0.75;
       $size: if( ($value * $factor) < 1, 1, $value * $factor );
       font-size: $size * 1em;
       margin: ( nth($htag_vmargins, $i) * 1em ) 0;
+      &:first-child {
+        margin-top: 0;
+      }
     }
   }
   // Set H1 widget titles default size
@@ -82,4 +108,45 @@ Media Queries
   @else if $size == xxl {
     @media (min-width: 1800px) { @content; }
   }
+}
+
+@mixin for-size-down($size) {
+  @if $size == sm {
+    @media (max-width: 576px) { @content; }
+  }
+  @else if $size == md {
+    @media (max-width: 768px) { @content; }
+  }
+  @else if $size == lg {
+    @media (max-width: 992px) { @content; }
+  }
+  @else if $size == xl {
+    @media (max-width: 1200px) { @content; }
+  }
+  @else if $size == xxl {
+    @media (max-width: 1800px) { @content; }
+  }
+}
+
+
+/*///////////////////////////////////////////////
+Z-Index Layering
+///////////////////////////////////////////////*/
+
+$z-layers: (
+  "cloud": 30,
+  "bird": 20,
+  "tree":  10,
+  "flower": 1,
+  "ground": 0,
+  "grave": -1,
+  "fossil": -10
+);
+
+@function z($layer) {
+  @if not map-has-key($z-layers, $layer) {
+    @warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
+  }
+
+  @return map-get($z-layers, $layer);
 }

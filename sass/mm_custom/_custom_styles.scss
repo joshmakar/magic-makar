@@ -30,9 +30,26 @@ Global Styles
 ///////////////////////////////////////////////*/
 
 body {
-  background-image: url('media/images/scratched-texture-background.jpg');
+  background-image:
+    url('media/images/scratched-texture-background.jpg'),
+    url('media/images/scratched-texture-background.jpg');
   background-repeat: no-repeat;
-  background-size: 100vw 75vh;
+  background-size:
+    100vw 100vh,
+    100vw 25vh;
+  background-position:
+    top,
+    bottom;
+
+  @include for-size-up('sm') {
+    background-size:
+      100vw 75vh,
+      100vw 25vh;
+  }
+}
+
+.page {
+  margin: 0;
 }
 
 // Top Nav
@@ -40,11 +57,18 @@ body {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 0 $phi * 1em $phi * 1em;
+  max-width: $max-width * 1.25 * 1px;
+  padding: $phi * 1em;
+  @include for-size-up('md'){
+    margin: 0 auto $phi * 1em;
+    padding: 0 $phi * 1em $phi * 1em;
+  }
 }
 
 .site-branding {
-  height: 30px;
+  height: 40px;
+  position: relative;
+  z-index: z('flower');
 
   a, svg {
     height: 100%;
@@ -58,11 +82,17 @@ body {
       transform: rotate(360deg);
     }
   }
+
+  @include for-size-up('md') {
+    height: 50px;
+  }
 }
 
 .site-info {
   font-family: $font__display;
+  position: relative;
   text-align: center;
+  z-index: z('flower');
 
   &, a {
     color: map-get($theme__colors, 'light');
@@ -82,14 +112,39 @@ body {
 }
 
 .site-content {
-  box-shadow: 0 0 6px #000;
-  margin: 0 auto;
   max-width: $max-width * 1px;
+  margin: 0 auto;
+
+  @include for-size-up('md') {
+    box-shadow: 0 0 6px #000;
+    margin: 0 auto $phi * 1em;
+    width: 95%;
+  }
 }
 
 .content-area {
   background: map-get($theme__colors, "light");
-  padding: $phi + $phi * 1em;
+  padding: $phi * 1em;
+
+  @include for-size-up('md') { 
+    padding: $phi + $phi * 1em;
+  }
+}
+
+.site-footer {
+  background-color: map-get($theme__colors, 'dark');
+  padding: $phi * 1em;
+}
+
+
+/*///////////////////////////////////////////////
+Widget Styling
+///////////////////////////////////////////////*/
+
+.widget {
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 
@@ -99,31 +154,58 @@ Page Specific Styles
 
 // Homepage greeter
 .greeter_outer-wrapper {
-  background-blend-mode: 
-    normal,
-    hard-light,
-    normal;
-  background-image:
-    url('media/images/joshmakar-glasses.png'),
-    url('media/images/diagonal-bar.png'),
-    url('media/images/scratched-texture-background.jpg');
-  background-position:
-    bottom right $phi + $phi * 1em,
-    center,
-    center;
-  background-repeat: no-repeat;
-  background-size:
-    contain,
-    cover,
-    cover;
-  height: 422px;
+  height: calc(100vh - 98px);
+  min-height: 422px;
+  
+  
+  @include for-size-up('sm') {
+    background-blend-mode: 
+      normal,
+      hard-light,
+      normal;
+    background-image:
+      url('media/images/joshmakar-glasses.png'),
+      url('media/images/diagonal-bar.png');
+    background-position:
+      bottom right $phi + $phi * 1em,
+      center;
+    background-repeat: no-repeat;
+    background-size:
+      contain,
+      cover;
+    height: 422px;
+  }
 }
 
 .greeter_inner-wrapper {
   align-items: center;
   display: flex;
+  flex-flow: column;
   height: 100%;
-  padding: $phi + $phi * 1em;
+  justify-content: center;
+  
+  @include for-size-up('sm') {
+    align-items: center;
+    flex-flow: row;
+    height: 100%;
+    justify-content: flex-start;
+    padding: $phi * 1em;
+  }
+
+  @include for-size-up('md') { 
+    padding: $phi + $phi * 1em;
+  }
+}
+
+.greeter_image {
+  border: 5px solid map-get($theme__colors, 'primary');
+  border-radius: 50%;
+  overflow: hidden;
+  width: 200px;
+
+  @include for-size-up('sm') {
+    display: none;
+  }
 }
 
 .greeter_text {
@@ -131,11 +213,133 @@ Page Specific Styles
   font-family: $font__display;
   font-size: 3em;
   font-weight: 700;
+  text-align: center;
 
   span {
     display: block;
   }
+
+  @include for-size-up('sm') {
+    text-align: left;
+  }
 }
 
-.greeter_image {
+
+/*////////////////////////////////////
+Seasoning
+////////////////////////////////////*/
+
+// Colors
+.color {
+  &--primary {
+    color: map-get($theme__colors, 'primary');
+  }
+
+  &--light {
+    color: map-get($theme__colors, 'light');
+  }
 }
+
+// Fonts/Sizes
+.fs {
+  @for $num from 1 through 4 {
+    &--em-#{$num} {
+      font-size: #{$num}em;
+    }
+  }
+}
+
+// Layout
+.flex {
+  display: flex;
+
+  &--align-items--center {
+    align-items: center;
+  }
+
+  &--space-between {
+    justify-content: space-between;
+  }
+}
+
+/* Gutenberg specific */
+.wp-block-media-text {
+  @include for-size-down('sm') {
+    display: flex;
+    flex-direction: column;
+    text-align: center;    
+  }
+  
+  &__media {
+    @include for-size-down('sm') {
+      padding: $phi * 1em $phi * 1em 0 $phi * 1em;
+    }
+  }
+  
+  &.bg--grey {
+    background: linear-gradient(180deg, transparent 15%, map-get($theme__colors, 'secondary') 15%, map-get($theme__colors, 'secondary') 100%);
+    color: map-get($theme__colors, 'light');
+    margin-left: -($phi * 1em);
+    margin-right: -($phi * 1em);
+
+    @include for-size-up('sm') {
+      background: linear-gradient(180deg, transparent 15%, map-get($theme__colors, 'secondary') 15%, map-get($theme__colors, 'secondary') 85%, transparent 85%);
+      padding: $phi + $phi * 1em;
+    }
+    
+    @include for-size-up('md') {
+      margin-left: -($phi + $phi * 1em);
+      margin-right: -($phi + $phi * 1em);
+    }
+  }
+}
+.wp-block-button {
+  &.bg--primary a {
+    background-color: map-get($map: $theme__colors, $key: 'primary');
+  }
+}
+
+
+/*///////////////////////////////////////////////
+Jetpack Styling
+///////////////////////////////////////////////*/
+
+.jetpack-portfolio-shortcode {
+  .portfolio-entry {
+    float: none;
+    margin: 0 0 1em;
+    
+    &.portfolio-entry{}
+    &.portfolio-entry-column-4 {
+      margin-right: 0;
+      width: 49%;
+      @include for-size-up('md') {
+        width: 24%;
+      }
+    }
+    &.type-layout{}
+    &.portfolio-entry-mobile-first-item-row {}
+    &.portfolio-entry-first-item-row {}
+  }
+  
+  .portfolio-entry-header {}
+  
+  .portfolio-featured-image {}
+
+  .portfolio-entry-title {
+    font-size: 1em;
+  }
+  
+  .portfolio-entry-meta {}
+  
+  .project-types {}
+  
+  &.column-4 {
+    clear: initial;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+

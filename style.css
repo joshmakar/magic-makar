@@ -57,6 +57,9 @@ Typography
 /*////////////////////////////////////
 Media Queries
 ////////////////////////////////////*/
+/*///////////////////////////////////////////////
+Z-Index Layering
+///////////////////////////////////////////////*/
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
@@ -370,15 +373,26 @@ optgroup,
 textarea {
   color: #404040;
   font-family: "Bitter", serif;
-  font-size: 16px;
-  font-size: 1rem;
+  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1.5; }
+  @media (min-width: 576px) {
+    body,
+    button,
+    input,
+    select,
+    optgroup,
+    textarea {
+      font-size: 16px;
+      font-size: 1rem; } }
 
 h1, h2, h3, h4, h5, h6 {
-  clear: both; }
+  clear: both;
+  overflow-wrap: break-word; }
 
 p {
-  margin-bottom: 1.5em; }
+  margin-bottom: 1.5em;
+  overflow-wrap: break-word; }
 
 dfn, cite, em, i {
   font-style: italic; }
@@ -429,7 +443,7 @@ html {
   box-sizing: inherit; }
 
 body {
-  background: #F1EFF3;
+  background: #009cb1;
   /* Fallback for when there is no custom background color defined. */ }
 
 hr {
@@ -553,11 +567,11 @@ textarea {
 ## Links
 --------------------------------------------------------------*/
 a {
-  color: royalblue; }
+  color: #00B2CA; }
   a:visited {
-    color: purple; }
+    color: #009cb1; }
   a:hover, a:focus, a:active {
-    color: midnightblue; }
+    color: #008597; }
   a:focus {
     outline: thin dotted; }
   a:hover, a:active {
@@ -590,31 +604,39 @@ a {
   .main-navigation ul li.focus > ul {
     left: auto; }
 
-.main-navigation li {
-  margin: 0 1.618em 0 0;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  padding: 1em;
-  transform: skew(0deg, 10deg);
-  overflow: hidden;
-  margin-top: -12px; }
-  .main-navigation li a {
-    transform: skew(0deg, -10deg); }
-  .main-navigation li:hover {
-    background: #E91E63; }
-    .main-navigation li:hover a {
-      color: #F1EFF3; }
-  .main-navigation li:last-child {
-    margin-right: 0; }
+.main-navigation .menu > li {
+  margin: 0 0 1.618em; }
+  @media (min-width: 768px) {
+    .main-navigation .menu > li {
+      margin: 0 1.618em 0 0;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      padding: 1em;
+      transform: skew(0deg, 10deg);
+      overflow: hidden;
+      margin-top: -12px; }
+      .main-navigation .menu > li a {
+        transform: skew(0deg, -10deg); }
+      .main-navigation .menu > li:hover, .main-navigation .menu > li.current_page_item {
+        background-color: #00B2CA; }
+        .main-navigation .menu > li:hover a, .main-navigation .menu > li.current_page_item a {
+          color: #F1EFF3; }
+      .main-navigation .menu > li:last-child {
+        margin-right: 0; } }
 
 .main-navigation a {
-  color: #EE3057;
+  color: #00B2CA;
   display: block;
   font-family: "Montserrat", sans-serif;
   text-decoration: none; }
 
-/* Small menu. */
+.menu-toggle {
+  color: #00B2CA;
+  font-size: 40px;
+  position: relative;
+  z-index: 1; }
+
 .menu-toggle,
 .main-navigation.toggled ul {
   display: block; }
@@ -624,6 +646,30 @@ a {
     display: none; }
   .main-navigation ul {
     display: flex; } }
+
+.menu.open {
+  align-items: center;
+  background: #151414;
+  display: flex;
+  font-size: 2em;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+  left: 0;
+  overflow: hidden;
+  padding: 100px 0 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%; }
+  .menu.open > li {
+    margin: 0;
+    padding: .5em;
+    width: 100%; }
+    .menu.open > li:hover, .menu.open > li.current_page_item {
+      background-color: #00B2CA; }
+      .menu.open > li:hover a, .menu.open > li.current_page_item a {
+        color: #F1EFF3; }
 
 .site-main .comment-navigation, .site-main
 .posts-navigation, .site-main
@@ -858,26 +904,38 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 3em;
   margin: 0.563em 0; }
+  h1:first-child {
+    margin-top: 0; }
 
 h2 {
   font-size: 2.25em;
   margin: 0.625em 0; }
+  h2:first-child {
+    margin-top: 0; }
 
 h3 {
   font-size: 1.5em;
   margin: 1.313em 0; }
+  h3:first-child {
+    margin-top: 0; }
 
 h4 {
   font-size: 1.313em;
   margin: 1.313em 0; }
+  h4:first-child {
+    margin-top: 0; }
 
 h5 {
   font-size: 1.125em;
   margin: 1.313em 0; }
+  h5:first-child {
+    margin-top: 0; }
 
 h6 {
   font-size: 1em;
   margin: 0.75em 0; }
+  h6:first-child {
+    margin-top: 0; }
 
 .widget-title {
   font-size: 1.313em; }
@@ -886,29 +944,48 @@ h6 {
 Global Styles
 ///////////////////////////////////////////////*/
 body {
-  background-image: url("media/images/scratched-texture-background.jpg");
+  background-image: url("media/images/scratched-texture-background.jpg"), url("media/images/scratched-texture-background.jpg");
   background-repeat: no-repeat;
-  background-size: 100vw 75vh; }
+  background-size: 100vw 100vh, 100vw 25vh;
+  background-position: top, bottom; }
+  @media (min-width: 576px) {
+    body {
+      background-size: 100vw 75vh, 100vw 25vh; } }
+
+.page {
+  margin: 0; }
 
 .site-header {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 0 1.618em 1.618em; }
+  max-width: 1225px;
+  padding: 1.618em; }
+  @media (min-width: 768px) {
+    .site-header {
+      margin: 0 auto 1.618em;
+      padding: 0 1.618em 1.618em; } }
 
 .site-branding {
-  height: 30px; }
+  height: 40px;
+  position: relative;
+  z-index: 1; }
   .site-branding a, .site-branding svg {
     height: 100%;
     transition: transform 200ms ease-in-out; }
     .site-branding a .default_fill, .site-branding svg .default_fill {
-      fill: #EE3057; }
+      fill: #00B2CA; }
     .site-branding a:hover, .site-branding svg:hover {
       transform: rotate(360deg); }
+  @media (min-width: 768px) {
+    .site-branding {
+      height: 50px; } }
 
 .site-info {
   font-family: "Montserrat", sans-serif;
-  text-align: center; }
+  position: relative;
+  text-align: center;
+  z-index: 1; }
   .site-info, .site-info a {
     color: #F1EFF3; }
   .site-info .site-title, .site-info .site-description {
@@ -919,37 +996,160 @@ body {
     font-weight: bold; }
 
 .site-content {
-  box-shadow: 0 0 6px #000;
-  margin: 0 auto;
-  max-width: 900px; }
+  max-width: 980px;
+  margin: 0 auto; }
+  @media (min-width: 768px) {
+    .site-content {
+      box-shadow: 0 0 6px #000;
+      margin: 0 auto 1.618em;
+      width: 95%; } }
 
 .content-area {
   background: #F1EFF3;
-  padding: 3.236em; }
+  padding: 1.618em; }
+  @media (min-width: 768px) {
+    .content-area {
+      padding: 3.236em; } }
+
+.site-footer {
+  background-color: #151414;
+  padding: 1.618em; }
+
+/*///////////////////////////////////////////////
+Widget Styling
+///////////////////////////////////////////////*/
+.widget:last-child {
+  margin-bottom: 0; }
 
 /*///////////////////////////////////////////////
 Page Specific Styles
 ///////////////////////////////////////////////*/
 .greeter_outer-wrapper {
-  background-blend-mode: normal, hard-light, normal;
-  background-image: url("media/images/joshmakar-glasses.png"), url("media/images/diagonal-bar.png"), url("media/images/scratched-texture-background.jpg");
-  background-position: bottom right 3.236em, center, center;
-  background-repeat: no-repeat;
-  background-size: contain, cover, cover;
-  height: 422px; }
+  height: calc(100vh - 98px);
+  min-height: 422px; }
+  @media (min-width: 576px) {
+    .greeter_outer-wrapper {
+      background-blend-mode: normal, hard-light, normal;
+      background-image: url("media/images/joshmakar-glasses.png"), url("media/images/diagonal-bar.png");
+      background-position: bottom right 3.236em, center;
+      background-repeat: no-repeat;
+      background-size: contain, cover;
+      height: 422px; } }
 
 .greeter_inner-wrapper {
   align-items: center;
   display: flex;
+  flex-flow: column;
   height: 100%;
-  padding: 3.236em; }
+  justify-content: center; }
+  @media (min-width: 576px) {
+    .greeter_inner-wrapper {
+      align-items: center;
+      flex-flow: row;
+      height: 100%;
+      justify-content: flex-start;
+      padding: 1.618em; } }
+  @media (min-width: 768px) {
+    .greeter_inner-wrapper {
+      padding: 3.236em; } }
+
+.greeter_image {
+  border: 5px solid #00B2CA;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 200px; }
+  @media (min-width: 576px) {
+    .greeter_image {
+      display: none; } }
 
 .greeter_text {
   color: #F1EFF3;
   font-family: "Montserrat", sans-serif;
   font-size: 3em;
-  font-weight: 700; }
+  font-weight: 700;
+  text-align: center; }
   .greeter_text span {
     display: block; }
+  @media (min-width: 576px) {
+    .greeter_text {
+      text-align: left; } }
+
+/*////////////////////////////////////
+Seasoning
+////////////////////////////////////*/
+.color--primary {
+  color: #00B2CA; }
+
+.color--light {
+  color: #F1EFF3; }
+
+.fs--em-1 {
+  font-size: 1em; }
+
+.fs--em-2 {
+  font-size: 2em; }
+
+.fs--em-3 {
+  font-size: 3em; }
+
+.fs--em-4 {
+  font-size: 4em; }
+
+.flex {
+  display: flex; }
+  .flex--align-items--center {
+    align-items: center; }
+  .flex--space-between {
+    justify-content: space-between; }
+
+/* Gutenberg specific */
+@media (max-width: 576px) {
+  .wp-block-media-text {
+    display: flex;
+    flex-direction: column;
+    text-align: center; } }
+
+@media (max-width: 576px) {
+  .wp-block-media-text__media {
+    padding: 1.618em 1.618em 0 1.618em; } }
+
+.wp-block-media-text.bg--grey {
+  background: linear-gradient(180deg, transparent 15%, #31393C 15%, #31393C 100%);
+  color: #F1EFF3;
+  margin-left: -1.618em;
+  margin-right: -1.618em; }
+  @media (min-width: 576px) {
+    .wp-block-media-text.bg--grey {
+      background: linear-gradient(180deg, transparent 15%, #31393C 15%, #31393C 85%, transparent 85%);
+      padding: 3.236em; } }
+  @media (min-width: 768px) {
+    .wp-block-media-text.bg--grey {
+      margin-left: -3.236em;
+      margin-right: -3.236em; } }
+
+.wp-block-button.bg--primary a {
+  background-color: #00B2CA; }
+
+/*///////////////////////////////////////////////
+Jetpack Styling
+///////////////////////////////////////////////*/
+.jetpack-portfolio-shortcode .portfolio-entry {
+  float: none;
+  margin: 0 0 1em; }
+  .jetpack-portfolio-shortcode .portfolio-entry.portfolio-entry-column-4 {
+    margin-right: 0;
+    width: 49%; }
+    @media (min-width: 768px) {
+      .jetpack-portfolio-shortcode .portfolio-entry.portfolio-entry-column-4 {
+        width: 24%; } }
+
+.jetpack-portfolio-shortcode .portfolio-entry-title {
+  font-size: 1em; }
+
+.jetpack-portfolio-shortcode.column-4 {
+  clear: initial;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
 
 /*# sourceMappingURL=style.css.map */

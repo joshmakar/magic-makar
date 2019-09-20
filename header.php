@@ -17,6 +17,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="profile" href="https://gmpg.org/xfn/11">
 
+  <!-- Device Styling Such as Chrome Nav Bar -->
+  <meta name="theme-color" content="#31393C">
+
   <?php wp_head(); ?>
 </head>
 

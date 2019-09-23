@@ -264,16 +264,18 @@ Seasoning
 
 /* Gutenberg specific */
 .wp-block-media-text {
-  @include for-size-down('sm') {
-    display: flex;
-    flex-direction: column;
-    text-align: center;    
+  &.is-stacked-on-mobile {
+    @include for-size-down('sm') {
+      display: flex;
+      flex-direction: column;
+      text-align: center;    
+    }
   }
   
-  &__media {
+  &.is-stacked-on-mobile &__media {
     @include for-size-down('sm') {
       padding: $phi * 1em $phi * 1em 0 $phi * 1em;
-    }
+   }
   }
   
   &.bg--grey {

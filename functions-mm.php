@@ -19,7 +19,7 @@ Register Additional Menus
 
 function magic_makar_register_nav_menu(){
   register_nav_menus( array(
-    'menu-2' => __( 'Footer', 'magic-makar' )
+    'menu-2' => esc_html__( 'Footer', 'magic-makar' )
   ) );
 }
 add_action( 'after_setup_theme', 'magic_makar_register_nav_menu', 0 );

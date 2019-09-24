@@ -16,7 +16,7 @@
         // User has assigned menu to this location;
         // output it
         wp_nav_menu( array( 
-            'theme_location' => 'footer',
+            'theme_location' => 'menu-2',
             'menu_id'        => 'footer_menu',
             'menu_class'     => 'footer-menu'
         ) );

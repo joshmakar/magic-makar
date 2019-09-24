@@ -148,14 +148,22 @@
 .footer-menu {
   border-bottom: 1px solid map-get($theme__colors, 'secondary');
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   list-style-type: none;
-  margin: 0 0 1em;
-  padding: 0 0 1em;
+  margin: 0;
+  padding: 0;
 
-  li:not(:last-child) {
-    border-right: 1px solid map-get($theme__colors, 'light');
-    margin-right: 1em;
-    padding-right: 1em;
+  li {
+    margin: 0 1em 1em 0;
+  }
+  
+  
+  @include for-size-up('sm') {
+    li:not(:last-child) {
+      border-right: 1px solid map-get($theme__colors, 'light');
+      margin-right: 1em;
+      padding-right: 1em;
+    }
   }
 }

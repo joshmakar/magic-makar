@@ -17,19 +17,16 @@ add_action('wp_enqueue_scripts', 'magic_makar_enqueue_styles_scripts');
 Register Additional Menus
 ///////////////////////////////////////////////*/
 
-// if ( ! function_exists( 'magic_makar_register_nav_menu' ) ) {
- 
-//   function magic_makar_register_nav_menu(){
-//     register_nav_menus( array(
-//       'menu-2' => esc_html__( 'Footer', 'magic-makar' )
-//     ) );
-//   }
-//   add_action( 'after_setup_theme', 'magic_makar_register_nav_menu', 0 );
-// }
+function magic_makar_register_nav_menu(){
+  register_nav_menus( array(
+    'menu-2' => __( 'Footer', 'magic-makar' )
+  ) );
+}
+add_action( 'after_setup_theme', 'magic_makar_register_nav_menu', 0 );
 
 
 /*///////////////////////////////////////////////
-Register Additional Menus
+Register Additional Widget Areas
 ///////////////////////////////////////////////*/
 
 function magic_makar_additional_widgets_init() {

@@ -14,6 +14,40 @@ add_action('wp_enqueue_scripts', 'magic_makar_enqueue_styles_scripts');
 
 
 /*///////////////////////////////////////////////
+Register Additional Menus
+///////////////////////////////////////////////*/
+
+if ( ! function_exists( 'magic_makar_register_nav_menu' ) ) {
+ 
+  function magic_makar_register_nav_menu(){
+    register_nav_menus( array(
+      'menu-2' => esc_html__( 'Footer', 'magic-makar' )
+    ) );
+  }
+  add_action( 'after_setup_theme', 'magic_makar_register_nav_menu', 0 );
+}
+
+
+/*///////////////////////////////////////////////
+Register Additional Menus
+///////////////////////////////////////////////*/
+
+function magic_makar_additional_widgets_init() {
+  register_sidebar( array(
+    'name'          => esc_html__( 'Footer', 'magic-makar' ),
+    'id'            => 'footer-1',
+    'description'   => esc_html__( 'Add widgets here.', 'magic-makar' ),
+    'before_widget' => '<section id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h2 class="widget-title">',
+    'after_title'   => '</h2>',
+  ) );
+}
+add_action( 'widgets_init', 'magic_makar_additional_widgets_init' );
+
+
+
+/*///////////////////////////////////////////////
 Custom Functionality
 ///////////////////////////////////////////////*/
 

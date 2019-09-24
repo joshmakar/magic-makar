@@ -143,3 +143,19 @@
     width: 50%;
   }
 }
+
+
+.footer-menu {
+  border-bottom: 1px solid map-get($theme__colors, 'secondary');
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0 0 1em;
+  padding: 0 0 1em;
+
+  li:not(:last-child) {
+    border-right: 1px solid map-get($theme__colors, 'light');
+    margin-right: 1em;
+    padding-right: 1em;
+  }
+}

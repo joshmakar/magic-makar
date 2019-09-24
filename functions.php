@@ -44,7 +44,7 @@ if ( ! function_exists( 'magic_makar_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'primary' => esc_html__( 'Primary', 'magic-makar' ),
+			'menu-1' => esc_html__( 'Primary', 'magic-makar' )
 		) );
 
 		/*
@@ -113,15 +113,6 @@ function magic_makar_widgets_init() {
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
-	register_sidebar( array(
-		'name'          => esc_html__( 'Footer', 'magic-makar' ),
-		'id'            => 'footer-1',
-		'description'   => esc_html__( 'Add widgets here.', 'magic-makar' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
 }
 add_action( 'widgets_init', 'magic_makar_widgets_init' );
 
@@ -168,7 +159,9 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
-/**
- * Load functions-mm.
- */
+
+/*///////////////////////////////////////////////
+Load functions-mm.
+///////////////////////////////////////////////*/
+
 require get_template_directory() . '/functions-mm.php';
